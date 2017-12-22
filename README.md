@@ -1,12 +1,12 @@
 # LaTeX Flipbook
 
-Delight the reader of your LaTeX thesis or document with a [flip book](https://en.wikipedia.org/wiki/Flip_book) effect when they rapidly flick through the printed pages or the PDF.
+Delight readers of your LaTeX document or thesis with a [flip book](https://en.wikipedia.org/wiki/Flip_book) effect when they rapidly flick through the printed pages or the PDF.
 
 ## Usage
 
-**Make sure to check the `example.tex` file for a sample implementation of how to use this package.**
+**Make sure to check the [`example.tex`](example.tex) file for a sample implementation of how to use this package.**
 
-- Load the `flipbook` package in your document preamble:
+- [Download](https://github.com/nilsleiffischer/latex-flipbook/archive/master.zip) the `flipbook.sty` file, drop it into the same directory as your `.tex` document and load the `flipbook` package in your document preamble:
 
     ```latex
     \usepackage{flipbook}
