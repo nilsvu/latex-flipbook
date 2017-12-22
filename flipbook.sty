@@ -1,0 +1,51 @@
+\ProvidesPackage{flipbook}[2017/12/22]
+
+\RequirePackage{pageslts} % for querying page numbers
+\RequirePackage[nomessages]{fp} % for page number calculations
+\RequirePackage{xstring} % for if-statements with strings
+\RequirePackage{xparse} % for more optional arguments
+
+% Renewcommand this macro to load arbitrary file formats or file name conventions.
+% #1: Path to the frame file including common filename prefix, but excluding frame number
+% #2: Frame number
+% #3: Filename extension
+\newcommand{\inputflipbookframe}[3]{
+	\input{#1#2.#3}%
+}
+
+% Render the frame for the current page.
+% #1 (optional): The frame number offset from the first page number. A positive integer makes the first document page correspond to a later frame.
+% #2 (optional): Frames per page. A number larger than 1 results in a speedup of the flipbook, where frames are skipped. A number smaller that one slows down the animation by displaying the same frame on multiple pages. Set this argument to 0.5 to keep the standard animation speed when printing a two-sided document.
+% #3: The path to the flipbook frame files, including the common filename prefix. The default implementation of \inputflipbookframe appends an underscore and the frame number, followed by a dot and argument #4.
+% #4 (optional): The filename ending. Default is `tex`.
+% #5 (optional): Use to scale the frames. Default is 1.
+\DeclareDocumentCommand{\flipbookframe}{ O{0} O{1} m O{tex} O{1} }{%
+	\FPeval{\offsetpagenumber}{trunc((\theCurrentPage - 1) * #2 + 1 + (#1),0)}%
+	\begingroup%
+	\setbox0=\hbox{%
+		\scalebox{#5}{\inputflipbookframe{#3}{\offsetpagenumber}{#4}}%
+	}\parbox{\wd0}{\box0}%
+	\endgroup%
+}
+
+% Render the frame for the current page, and a corresponding label (e.g. the page number).
+% #1 (optional): The frame number offset from the first page number. A positive integer makes the first document page correspond to a later frame.
+% #2 (optional): Frames per page. A number larger than 1 results in a speedup of the flipbook, where frames are skipped. A number smaller that one slows down the animation by displaying the same frame on multiple pages. Set this argument to 0.5 to keep the standard animation speed when printing a two-sided document.
+% #3: The path to the flipbook frame files, including the common filename prefix. The default implementation of \inputflipbookframe appends an underscore and the frame number, followed by a dot and argument #4.
+% #4 (optional): The filename ending. Default is `tex`.
+% #5 (optional): Use to scale the frames. Default is 1.
+% #6: Label alignment. `l` and `r` align the label left and right of the flipbook frame, respectively. `c` centers the label, and renders the flipbook on its left.
+% #7: The label text, e.g. `\thepage`.
+% #8: Width of the label box, thereby determining its distance to the flipbook animation.
+\DeclareDocumentCommand{\labeledflipbookframe}{ O{0} O{1} m O{tex} O{1} m m m}{%
+	\IfEq{#6}{r}{%
+		\makebox[0pt][r]{\flipbookframe[#1][#2]{#3}[#4][#5]}%
+	}{}%
+	\IfEq{#6}{c}{%
+		\makebox[0pt][r]{\flipbookframe[#1][#2]{#3}[#4][#5]}%
+	}{}%
+	\makebox[#8][#6]{#7}%
+	\IfEq{#6}{l}{%
+		\makebox[0pt][l]{\flipbookframe[#1][#2]{#3}[#4][#5]}%
+	}{}%
+}

@@ -1,0 +1,46 @@
+\documentclass[
+	twoside % Uncomment to typeset for two-sided print, with two flipbook animations (left and right pages). Comment this line for (one-sided) PDFs.
+]{report}
+
+% Include the package
+\usepackage{flipbook}
+
+% Sample usage with the fancyhdr package and frames in the PGF format
+\usepackage{fancyhdr}
+\usepackage{pgf}
+\pagestyle{fancy} % Make pages use the fancy page style by default
+\makeatletter % To have access to \if@twoside
+\fancyfoot{} % Clear footer
+% Add flipbook frames to the footer, next to page numbers
+% See documentation in README.me for details
+\if@twoside
+	\fancyfoot[RO]{%
+		\labeledflipbookframe[0][0.5]{example_frames/plus_}[pgf][0.2]{r}{\thepage}{2em}%
+	}
+	\fancyfoot[LE]{%
+		\labeledflipbookframe[0][0.5]{example_frames/cross_}[pgf][0.2]{l}{\thepage}{2em}%
+	}	
+\else
+	\fancyfoot[C]{
+		\labeledflipbookframe{example_frames/plus_}[pgf][0.2]{c}{\thepage}{2em}%
+	}
+\fi
+\fancypagestyle{plain}{% Clear header for chapter pages and such
+	\fancyhead{}
+	\renewcommand{\headrulewidth}{0pt}
+}
+\makeatother
+
+\usepackage{lipsum} % to generate sample text
+
+% ---
+
+\begin{document}
+
+\pagenumbering{arabic} % Make sure a page numbering scheme is explicitly set at the beginning.
+
+\chapter{Lorem Ipsum}
+
+\lipsum[1-150]
+	
+\end{document}
