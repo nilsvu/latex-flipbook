@@ -1,6 +1,10 @@
 # LaTeX Flipbook
 
-Delight readers of your LaTeX document or thesis with a [flip book](https://en.wikipedia.org/wiki/Flip_book) effect when they rapidly flick through the printed pages or the PDF.
+Delight readers of your LaTeX document or thesis with a [flipbook](https://en.wikipedia.org/wiki/Flip_book) effect when they rapidly flick through the printed pages or the PDF.
+
+<p align="center"><img src="https://raw.githubusercontent.com/nilsleiffischer/latex-flipbook/master/animation.gif"></p>
+
+> This sample animation next to the page numbers in my [bachelor thesis](https://github.com/nilsleiffischer/bsc-thesis) on [gravitational waves](https://en.wikipedia.org/wiki/Gravitational_wave) shows one passing through.
 
 ## Usage
 
@@ -63,3 +67,13 @@ Delight readers of your LaTeX document or thesis with a [flip book](https://en.w
   - `#6`: Label alignment. `l` and `r` align the label left and right of the flipbook frame, respectively. `c` centers the label, and renders the flipbook on its left.
   - `#7`: The label text, e.g. `\thepage`.
   - `#8`: Width of the label box, thereby determining its distance to the flipbook animation.
+
+
+  ## Contact
+
+  LaTeX Flipbook was created and is maintained by [Nils Leif Fischer](https://nilsleiffischer.de).
+
+
+  ## License
+
+  LaTeX Flipbook is released under the MIT license. See [LICENSE.md](LICENSE.md) for details.

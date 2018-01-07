@@ -12,14 +12,14 @@
 \makeatletter % To have access to \if@twoside
 \fancyfoot{} % Clear footer
 % Add flipbook frames to the footer, next to page numbers
-% See documentation in README.me for details
+% See documentation in README.md for details
 \if@twoside
 	\fancyfoot[RO]{%
 		\labeledflipbookframe[0][0.5]{example_frames/plus_}[pgf][0.2]{r}{\thepage}{2em}%
 	}
 	\fancyfoot[LE]{%
 		\labeledflipbookframe[0][0.5]{example_frames/cross_}[pgf][0.2]{l}{\thepage}{2em}%
-	}	
+	}
 \else
 	\fancyfoot[C]{
 		\labeledflipbookframe{example_frames/plus_}[pgf][0.2]{c}{\thepage}{2em}%
@@ -42,5 +42,5 @@
 \chapter{Lorem Ipsum}
 
 \lipsum[1-150]
-	
+
 \end{document}
